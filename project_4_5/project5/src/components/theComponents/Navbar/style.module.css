@@ -1,0 +1,13 @@
+.logoContainer{
+  position: fixed;
+  top: 0;
+  display: flex;
+  align-items: center;
+  background-color: rgba(51,96,150);
+  width: 100vw;
+  height: 60px;
+  z-index: 9999;
+}
+p{
+  padding: 20px
+}

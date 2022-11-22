@@ -1,0 +1,10 @@
+.container{
+  display: flex;
+  flex-flow: column wrap;
+  margin: 10px;
+}
+.button{
+  border-radius: 20px;
+  padding: 5px;
+  background-color:#33609686 ;
+}
