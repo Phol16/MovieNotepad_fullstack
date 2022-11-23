@@ -1,34 +1,38 @@
-import { Animation, Diversity3, FilterNone, FlutterDash, Mood, TheaterComedy } from '@mui/icons-material';
+import { Animation, Diversity3, FilterNone, FlutterDash, Mood, TextSnippet, TheaterComedy } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import { useMovieContext } from '../../../../Context/Context';
 import style from './style.module.css';
 
 const UserSideBar_Left = () => {
-  const { getGenre } = useMovieContext();
+  const { getGenre } = useMovieContext(); //variable to get the genre
   const navigate = useNavigate();
 
   const comedyGenre = () => {
-    getGenre('comedy');
+    getGenre('comedy'); // set the value for genre as comedy
   };
   const animationGenre = () => {
-    getGenre('animation');
+    getGenre('animation'); // set the value for genre as animation
   };
   const dramaGenre = () => {
-    getGenre('drama');
+    getGenre('drama'); // set the value for genre as drama
   };
   const familyGenre = () => {
-    getGenre('family');
+    getGenre('family'); // set the value for genre as family
   };
   const horrorGenre = () => {
-    getGenre('horror');
+    getGenre('horror'); // set the value for genre as horror
   };
   const allGenre = () => {
-    getGenre('all');
+    getGenre('all'); // set the value for genre as all
   };
 
+  const watchlist=()=>{
+    navigate('/userHomepage/Watchlist')
+  }
+
   const logout = () => {
-    navigate('/');
+    navigate('/'); // redirect back to loginpage
   };
 
   return (
@@ -56,9 +60,15 @@ const UserSideBar_Left = () => {
             <FilterNone /> None
           </button>
         </div>
-        <div className={style.admin}>
-          User
-          <button onClick={logout}>Logout</button>
+        <div className={style.user}>
+          <div className={style.topPart}>
+            User
+            <button onClick={logout} className={style.logout}>
+              Logout
+            </button>
+          </div>
+          <br />
+          <button onClick={watchlist} className={style.buttonWL}><TextSnippet/> WatchList</button>
         </div>
       </div>
     </div>

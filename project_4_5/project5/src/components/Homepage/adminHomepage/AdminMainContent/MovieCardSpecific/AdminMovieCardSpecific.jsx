@@ -37,7 +37,7 @@ const AdminMovieCardSpecific = () => {
                 Back
               </button>
               <div className={style.adminButtons}>
-                <UpdateButton theTitle={state.title} />
+                <UpdateButton theTitle={state.title}/>
                 <DeleteButton theTitle={state.title} />
               </div>
             </section>

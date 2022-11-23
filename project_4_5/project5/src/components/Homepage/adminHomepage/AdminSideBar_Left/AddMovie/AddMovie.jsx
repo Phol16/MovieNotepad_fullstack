@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useMovieContext } from '../../../../../Context/Context';
 import { Modal } from '@mui/material';
 import { Box } from '@mui/system';
+import style from './style.module.css'
 
 const boxStyle = {
   position: 'absolute',
@@ -27,11 +28,11 @@ const AddMovie = () => {
   //values of ...
   let title = '';
   let imdbId = '';
-  let genre = '';
+  let genre = [];
   let posterURL = '';
 
   const theValue = (e) => {
-    getData({ title: title.value, imdbId: imdbId.value, genre: genre.value, posterURL: posterURL.value }); //set the value of ...
+    getData({ title: title.value, imdbId: imdbId.value, genre: [genre.value], posterURL: posterURL.value }); //set the value of ...
   };
 
   const theMovie = async (e) => {
@@ -53,8 +54,8 @@ const AddMovie = () => {
   };
 
   return (
-    <div>
-      <button onClick={handleOpen}>Add Movie</button>
+    <div >
+      <button onClick={handleOpen} className={style.addMovie}>Add Movie</button>
       <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
         <Box sx={boxStyle}>
           <form onSubmit={theMovie}>

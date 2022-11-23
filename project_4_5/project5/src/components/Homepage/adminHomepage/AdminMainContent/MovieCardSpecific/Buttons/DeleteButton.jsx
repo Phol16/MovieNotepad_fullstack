@@ -46,7 +46,7 @@ const DeleteButton = ({ theTitle }) => {
   return (
     <span>
       <button className={style.theAdminButton} onClick={handleOpen}>
-        <Delete />
+        <Delete/>
       </button>
       <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
         <Box sx={theStyle}>

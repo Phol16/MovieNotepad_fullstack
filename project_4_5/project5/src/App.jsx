@@ -6,6 +6,7 @@ import AdminHomepage from './components/Homepage/adminHomepage/AdminHomepage';
 import UserHomepage from './components/Homepage/userHomepage/UserHomepage';
 import AdminMovieCardSpecific from './components/Homepage/adminHomepage/AdminMainContent/MovieCardSpecific/AdminMovieCardSpecific';
 import UserMovieCardSpecific from './components/Homepage/userHomepage/UserMainContent/MovieCardSpecific/UserMovieCardSpecific';
+import Watchlist from './components/Homepage/userHomepage/Watchlist/Watchlist';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/adminHomepage/Movie" element={<AdminMovieCardSpecific />} />
           <Route path="/userHomepage" element={<UserHomepage />} />
           <Route path="/userHomepage/Movie" element={<UserMovieCardSpecific />} />
+          <Route path="/userHomepage/Watchlist" element={<Watchlist/>} />
         </Routes>
       </MovieProvider>
     </div>

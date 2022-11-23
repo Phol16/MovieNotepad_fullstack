@@ -18,7 +18,7 @@ function AdminMovieCard({ details }) {
       <button className={style.button} onClick={theMovie}>
         <Card sx={{ borderRadius: '15px' }}>
           <CardHeader
-            sx={{ bgcolor: '#336096', color: 'white' }}
+            sx={{ bgcolor: '#1a2a38', color: 'white' }}
             title={details.title}
             avatar={
               <Avatar>

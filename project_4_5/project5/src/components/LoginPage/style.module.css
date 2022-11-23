@@ -10,10 +10,10 @@
   height: 100vh;
 }
 .subContainer {
-  background: rgba(51, 96, 150, 0.5);
+  background: rgba(26,42,56,0.5);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(51, 96, 150, 0.25);
+  border: 1px solid rgba(26,42,56,0.25);
   padding: 60px 30px;
   display: flex;
   flex-flow: column wrap;
