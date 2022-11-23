@@ -18,15 +18,13 @@ router.route('/').post(userFieldValidation, emailValidation, async (request, res
   return resposne.status(201).json(theAdminUser);
 });
 
-router.route('/').get(emailFieldValidation,async(request,response)=>{
-  const {Email} = request.query
-  
+router.route('/').get(emailFieldValidation, async (request, response) => {
+  const { Email } = request.query;
 
-  const theAdminUser = await adminUser.findOne({email:Email})
+  const theAdminUser = await adminUser.findOne({ email: Email });
 
-
-  return response.status(200).json({theAdminUser})
-})
+  return response.status(200).json({ theAdminUser });
+});
 
 router.route('/movies').post(movieFieldValidation, async (request, response) => {
   const { title, imdbId, genre, posterURL } = request.body;
@@ -40,9 +38,10 @@ router.route('/movies').post(movieFieldValidation, async (request, response) => 
 
 router.route('/movies/:title').patch(adminIdValidation, async (request, response) => {
   const { title, imdbId, genre, posterURL } = request.body;
+  const theTitle = request.params.title;
   const authorId = request.header('x-usersid');
 
-  const theMovieId = await movie.findOne({ authorId, title });
+  const theMovieId = await movie.findOne({ authorId, deletedAt: null, title: theTitle });
 
   await movie.updateOne({ _id: theMovieId['_id'] }, { title, imdbId, genre, posterURL });
   return response.status(201).json({ message: `${request.params.title} has been Updated` });
@@ -52,7 +51,7 @@ router.route('/movies/:title').delete(adminIdValidation, async (request, respons
   const { title } = request.params;
   const authorId = request.header('x-usersid');
 
-  const theMovieId = await movie.findOne({ authorId, title });
+  const theMovieId = await movie.findOne({ authorId, deletedAt: null, title });
 
   await movie.updateOne({ _id: theMovieId['_id'] }, { deletedAt: Date.now() });
   return response.status(201).json({ message: `${request.params.title} has been Deleted` });

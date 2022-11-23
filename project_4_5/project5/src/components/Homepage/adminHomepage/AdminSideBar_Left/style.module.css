@@ -5,8 +5,11 @@
 }
 .fixedContainer {
   position: fixed;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
 }
-.sorter{
+.sorter {
   background: rgba(51, 96, 150, 0.8);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
@@ -18,12 +21,12 @@
   justify-content: space-between;
   align-content: space-between;
 }
-.button{
-  background-color: #7E97B4;
+.button {
+  background-color: #7e97b4;
   margin: 2px 0;
   display: flex;
 }
-.admin{
+.admin {
   background: rgba(51, 96, 150, 0.8);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
@@ -37,14 +40,14 @@
   align-items: center;
   width: 100%;
 }
-.logout{
-  background-color: #7E97B4;
+.logout {
+  background-color: #7e97b4;
   padding: 2px 8px;
   border-radius: 5px;
 }
-.topPart{
+.topPart {
   width: 100%;
   display: flex;
   align-items: center;
-justify-content: space-around;
+  justify-content: space-around;
 }

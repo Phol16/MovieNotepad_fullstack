@@ -9,7 +9,7 @@ const movieSchema = new Schema({
   posterURL: {type:String,default:"no_Url"},
   genre: {type:String,default:"no_Genre"},
   authorId:{type:Schema.Types.ObjectId, ref:adminUser},
-  publishedAt:{type:Date, default:Date.now()},
+  publishedAt:{type:Date, default: Date.now},
   deletedAt:{type:Date, default:null},
 });
 

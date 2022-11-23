@@ -1,6 +1,7 @@
-import { Button, Modal, Typography } from '@mui/material';
-import { Box } from '@mui/system';
 import React, { useState } from 'react';
+import { useMovieContext } from '../../../../../Context/Context';
+import { Modal } from '@mui/material';
+import { Box } from '@mui/system';
 
 const boxStyle = {
   position: 'absolute',
@@ -11,33 +12,75 @@ const boxStyle = {
   bgcolor: 'white',
   color: 'black',
   border: '2px solid #000',
-  borderRadius:'20px',
+  borderRadius: '20px',
   boxShadow: 24,
   p: 4,
 };
 
 const AddMovie = () => {
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [open, setOpen] = useState(false); // variable for the open/close value
+  const { getData, theData, getUpdate, theUserId } = useMovieContext(); // global variables
+
+  const handleOpen = () => setOpen(true); // set the value to true/open
+  const handleClose = () => setOpen(false); // set the value to false/close
+
+  //values of ...
+  let title = '';
+  let imdbId = '';
+  let genre = '';
+  let posterURL = '';
+
+  const theValue = (e) => {
+    getData({ title: title.value, imdbId: imdbId.value, genre: genre.value, posterURL: posterURL.value }); //set the value of ...
+  };
+
+  const theMovie = async (e) => {
+    e.preventDefault(); // to prevent from refreshing the page after submitting
+
+    // submitting data to the DB
+    await fetch('http://localhost:8000/adminUser/movies', {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-usersid': `${theUserId}`,
+      },
+      body: JSON.stringify(theData),
+    });
+
+    getUpdate(theData.title); // set the value of the update
+    handleClose(); // to close the modal
+  };
 
   return (
     <div>
       <button onClick={handleOpen}>Add Movie</button>
       <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
         <Box sx={boxStyle}>
-          <form action="/action_page.php">
-            <label for="fname">Title:</label>
+          <form onSubmit={theMovie}>
+            <label htmlFor="title">
+              Title:
+              <br />
+              <input type="text" id="title" name="title" placeholder="Title" onChange={theValue} ref={(e) => (title = e)} />
+            </label>
             <br />
-            <input type="text" id="fname" name="fname" placeholder='Title' />
+            <label htmlFor="imdbId">
+              Imdb Id:
+              <br />
+              <input type="text" id="imdbId" name="imdbId" placeholder="Imdb Id" onChange={theValue} ref={(e) => (imdbId = e)} />
+            </label>
             <br />
-            <label for="lname">Imdb Id:</label>
+            <label htmlFor="genre">
+              Genre:
+              <br />
+              <input type="text" id="genre" name="genre" placeholder="Genre" onChange={theValue} ref={(e) => (genre = e)} />
+            </label>
             <br />
-            <input type="text" id="lname" name="lname" placeholder='Imdb Id' />
-            <br />
-            <label for="lname">Genre:</label>
-            <br/>
-            <input type="text" id="lname" name="lname" placeholder='Genre' />
+            <label htmlFor="posterURL">
+              PosterUrl:
+              <br />
+              <input type="text" id="posterURL" name="posterURL" placeholder="PosterURL" onChange={theValue} ref={(e) => (posterURL = e)} />
+            </label>
             <br />
             <br />
             <input type="submit" value="Submit" />

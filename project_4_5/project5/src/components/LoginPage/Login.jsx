@@ -1,36 +1,41 @@
-import React, { useEffect, useState } from 'react';
-import style from './style.module.css';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import NavBar from '../theComponents/Navbar/NavBar';
 import { Email, Lock } from '@mui/icons-material';
 import { useMovieContext } from '../../Context/Context';
+import NavBar from '../theComponents/Navbar/NavBar';
+import style from './style.module.css';
 
 const Login = () => {
-  const [emailAccount, setEmailAccount] = useState([]);
-  const [passwordAccount, setPasswordAccount] = useState([]);
-  const [inputValid, setInputValid] = useState('');
-  const {getUserId} = useMovieContext();
+  const [emailAccount, setEmailAccount] = useState([]); //variable for the emailaccount value
+  const [passwordAccount, setPasswordAccount] = useState([]); //variable for the password value
+  const [inputValid, setInputValid] = useState(''); //variable for the invalidinput text
+
+  const { getUserId } = useMovieContext(); // variable to get the users Id
   const navigate = useNavigate();
 
   const theEmail = (e) => {
-    setEmailAccount(e.target.value);
+    setEmailAccount(e.target.value); // set the value for email
   };
   const thePassword = (e) => {
-    setPasswordAccount(e.target.value);
+    setPasswordAccount(e.target.value); // set the value for password
   };
 
   const submit = async (e) => {
     e.preventDefault();
     const validUser = await fetch(`http://localhost:8000/adminUser?Email=${emailAccount}`).then((res) => res.json());
 
+    //check if email and password matches or has a value
     if (!validUser.theAdminUser || validUser.theAdminUser.email !== emailAccount || validUser.theAdminUser.password !== passwordAccount) {
-      return setInputValid('Invalid Input');
+      return setInputValid('Invalid Input'); // set the value for the invalid input text
     }
-    getUserId(validUser.theAdminUser._id)
+
+    getUserId(validUser.theAdminUser._id); //set the value for the user Id
+
+    //condition statement to redicrect depends on the role
     if (validUser.theAdminUser.role === 'admin_User') {
-      return navigate('/adminHomepage');
+      return navigate('/adminHomepage'); // redirect to admin homepage
     }
-    navigate('/userHomepage');
+    navigate('/userHomepage'); //redirect to user homepage
   };
 
   return (
@@ -38,11 +43,7 @@ const Login = () => {
       <NavBar />
       <div className={style.subContainer}>
         LOGIN
-        <form
-          onSubmit={(e) => {
-            submit(e);
-          }}
-        >
+        <form onSubmit={(e) => submit(e)}>
           <label htmlFor="Email">
             <span>
               <Email /> Email:
@@ -57,7 +58,7 @@ const Login = () => {
             <input onChange={thePassword} type="password" id="Password" name="Password" required placeholder="password" />
           </label>
           <br />
-          <span className={style.span}>{inputValid}</span>
+          <span className={style.invalidInput}>{inputValid}</span>
           <br />
           <input className={style.submit} type="submit" value="Login" />
         </form>

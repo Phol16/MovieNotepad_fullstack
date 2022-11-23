@@ -1,35 +1,35 @@
-import { Animation, Diversity3, FilterNone, FlutterDash, Mood, TheaterComedy } from '@mui/icons-material';
 import React from 'react';
+import { Animation, Diversity3, FilterNone, FlutterDash, Mood, TheaterComedy } from '@mui/icons-material';
 import { useMovieContext } from '../../../../Context/Context';
-import style from './style.module.css';
 import { useNavigate } from 'react-router-dom';
 import AddMovie from './AddMovie/AddMovie';
+import style from './style.module.css';
 
 const AdminSideBar_Left = () => {
-  const { getGenre } = useMovieContext();
+  const { getGenre } = useMovieContext(); //variable to get the genre
   const navigate = useNavigate();
 
   const comedyGenre = () => {
-    getGenre('comedy');
+    getGenre('comedy'); // set the value for genre as comedy
   };
   const animationGenre = () => {
-    getGenre('animation');
+    getGenre('animation'); // set the value for genre as animation
   };
   const dramaGenre = () => {
-    getGenre('drama');
+    getGenre('drama'); // set the value for genre as drama
   };
   const familyGenre = () => {
-    getGenre('family');
+    getGenre('family'); // set the value for genre as family
   };
   const horrorGenre = () => {
-    getGenre('horror');
+    getGenre('horror'); // set the value for genre as horror
   };
   const allGenre = () => {
-    getGenre('all');
+    getGenre('all'); // set the value for genre as all
   };
 
   const logout = () => {
-    navigate('/');
+    navigate('/'); // redirect back to loginpage
   };
 
   return (

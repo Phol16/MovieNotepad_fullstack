@@ -1,19 +1,16 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useMovieContext } from '../../../../../Context/Context';
-import NavBar from '../../../../theComponents/Navbar/NavBar';
+import { useNavigate } from 'react-router-dom';
 import AdminMovieCard from '../MovieCard/AdminMovieCard';
+import NavBar from '../../../../theComponents/Navbar/NavBar';
+import DeleteButton from './Buttons/DeleteButton';
+import UpdateButton from './Buttons/UpdateButton';
 import style from './style.module.css';
-import { redirect, useNavigate } from 'react-router-dom';
-import { Delete, Edit } from '@mui/icons-material';
-import { IconButton } from '@mui/material';
 
 const AdminMovieCardSpecific = () => {
-  const [state, setState] = useState([]);
-  const [displayButton, setDisplayButton] = useState('display');
-  const { theCard } = useMovieContext();
+  const [state, setState] = useState([]); //variable for the details
+  const { theCard } = useMovieContext(); //global variable
   const navigate = useNavigate();
-  const { theUserId } = useMovieContext();
 
   useEffect(() => {
     fetchData(`http://localhost:8000/movies?search=${theCard}`);
@@ -21,15 +18,11 @@ const AdminMovieCardSpecific = () => {
 
   const fetchData = async (url) => {
     const response = await fetch(url).then((res) => res.json());
-    setState(response);
+    setState(response); // set the value of the details
   };
 
-  // if (state.authorId === theUserId) {
-  //   setDisplayButton('display');
-  // }
-
   const back = () => {
-    navigate('/adminHomepage');
+    navigate('/adminHomepage'); // redirect to admin homepage
   };
 
   return (
@@ -43,13 +36,9 @@ const AdminMovieCardSpecific = () => {
               <button className={style.button} onClick={back}>
                 Back
               </button>
-              <div style={{ display: displayButton }}>
-                <button className={style.adminButton}>
-                  <Edit />
-                </button>
-                <button className={style.adminButton}>
-                  <Delete />
-                </button>
+              <div className={style.adminButtons}>
+                <UpdateButton theTitle={state.title} />
+                <DeleteButton theTitle={state.title} />
               </div>
             </section>
             <div className={style.boxDetails}>
