@@ -3,6 +3,7 @@ import addToWLValidation from '../middleware/addtoWLvalidation.js';
 import emailValidation from '../middleware/emailValidation.js';
 import movieValidation from '../middleware/movieValidation.js';
 import userFieldValidation from '../middleware/userFieldValidation.js';
+import userIdValidation from '../middleware/userIdValidation.js';
 import watchListValidation from '../middleware/watchlistValidation.js';
 import movie from '../models/movieModels.js';
 import user from '../models/UserModel.js';
@@ -27,9 +28,9 @@ router.route('/movies/:title').post(movieValidation, addToWLValidation, async (r
   return response.status(200).json({ message: 'added to watchlist' });
 });
 
-router.route('/watchlist').get(async (request, response) => {
+router.route('/watchlist').get( userIdValidation,async (request, response) => {
   const userId = request.header('x-usersid');
-  return response.status(200).json(await watchlist.find({ userId }));
+  return response.status(200).json(await watchlist.find({ deletedAt:null, userId }));
 });
 
 router.route('/watchlist/:title').get(watchListValidation, async (request, response) => {
@@ -40,7 +41,6 @@ router.route('/watchlist/:title').get(watchListValidation, async (request, respo
 });
 
 router.route('/watchlist/:title').delete(watchListValidation, async (request, response) => {
-  console.log('hello')
   const { title } = request.params;
   const userId = request.header('x-usersid');
 

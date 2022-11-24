@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
-import { useMovieContext } from '../../../../../../Context/Context';
 import { Delete } from '@mui/icons-material';
-import { Box, Modal, } from '@mui/material';
+import { Modal } from '@mui/material';
+import { Box } from '@mui/system';
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import style from './style.module.css';
+import { useMovieContext } from '../../../../../../Context/Context';
+import style from './style.module.css'
 
 const theStyle = {
   position: 'absolute',
@@ -17,30 +18,23 @@ const theStyle = {
   p: 4,
 };
 
-const DeleteButton = ({ theTitle }) => {
+const DeleteWL = ({theTitle}) => {
   const [open, setOpen] = useState(false); // variables for open/close
-  const { getUpdate, theUserId } = useMovieContext(); // global variable
+  const { theUserId } = useMovieContext(); // global variable
 
   const navigate = useNavigate();
   const handleOpen = () => setOpen(true); // set the value to true/open
   const handleClose = () => setOpen(false); // set the value to false/close
 
   const deleteIt = async () => {
-    const response = await fetch(`http://localhost:8000/adminUser/movies/${theTitle}`, {
+    await fetch(`http://localhost:8000/user/watchlist/${theTitle}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
         'x-usersid': `${theUserId}`,
       },
-    }).then((response) => response.json());
-
-    //check if the user is the one who uploaded the movieData
-    if (response.error === `No Movie published with title:${theTitle}`) {
-      return handleClose(); // close the modal
-    }
-
-    getUpdate('theTitle'); // update
-    navigate('/adminHomepage'); // redirect to admin homepage
+    });
+     return navigate('/userHomepage/Watchlist')
   };
 
   return (
@@ -61,6 +55,6 @@ const DeleteButton = ({ theTitle }) => {
       </Modal>
     </span>
   );
-};
+}
 
-export default DeleteButton;
+export default DeleteWL

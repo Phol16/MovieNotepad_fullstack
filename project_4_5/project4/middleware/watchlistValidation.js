@@ -2,7 +2,6 @@ import watchlist from "../models/watchlist.js";
 
 const watchListValidation = async (request, response, next) => {
   const userId = request.header('x-usersid');
-  console.log('hello')
 
   if (request.params.title) {
     const theWatchList = await watchlist.findOne({userId, title: request.params.title });

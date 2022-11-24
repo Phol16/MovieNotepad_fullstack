@@ -24,10 +24,12 @@ const Watchlist = () => {
         'x-usersid': `${theUserId}`
       }
     }).then(res=>res.json())
-    setWL(response)
+      if(response.error === 'unkown UserId'){
+        return 
+      }
+     setWL(response)
   }
 
-console.log(wL)
   const displayCard=(e)=>{
     return <WatchlistCard details={e} key={e._id}/>
   }

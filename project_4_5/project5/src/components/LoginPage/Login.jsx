@@ -31,7 +31,7 @@ const Login = () => {
 
     getUserId(validUser.theAdminUser._id); //set the value for the user Id
 
-    //condition statement to redicrect depends on the role
+    //condition statement to redirect depends on the role
     if (validUser.theAdminUser.role === 'admin_User') {
       return navigate('/adminHomepage'); // redirect to admin homepage
     }

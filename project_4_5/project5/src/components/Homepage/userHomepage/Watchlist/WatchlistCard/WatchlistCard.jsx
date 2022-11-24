@@ -2,13 +2,17 @@ import { LocalMovies } from '@mui/icons-material'
 import { Avatar, Card, CardHeader, CardMedia } from '@mui/material'
 import { Box } from '@mui/system'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useMovieContext } from '../../../../../Context/Context'
 import style from './style.module.css'
 
 const WatchlistCard = ({details}) => {
+  const { getCard}=useMovieContext();
+  const navigate = useNavigate();
 
-  console.log(details)
   const theWl = ()=>{
-
+    getCard(details.title)
+    return navigate('/userHomepage/Watchlist/Movie')
   }
   return (
     <Box className={style.container}>
