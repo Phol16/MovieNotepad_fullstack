@@ -4,6 +4,7 @@ import { Edit } from '@mui/icons-material';
 import { Modal, Stack } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import style from './style.module.css';
+import { useEffect } from 'react';
 
 const theStyle = {
   position: 'absolute',
@@ -20,8 +21,8 @@ const theStyle = {
 
 const UpdateButton = ({ theTitle }) => {
   const [open, setOpen] = useState(false); // variable for open/close
-  const [data,setData]= useState({});
-  const { getData, theData, getUpdate, theUserId } = useMovieContext(); // global variable
+  const [data, setData] = useState({});
+  const { getUpdate, theUserId } = useMovieContext(); // global variable
 
   const navigate = useNavigate();
   const handleOpen = () => setOpen(true); // set the value to true/open
@@ -32,6 +33,15 @@ const UpdateButton = ({ theTitle }) => {
   let imdbId = '';
   let genre = [];
   let posterURL = '';
+
+  useEffect(() => {
+    fetchData(`http://localhost:8000/movies?search=${theTitle}`);
+  }, [open]);
+
+  const fetchData = async (url) => {
+    const response = await fetch(url).then((res) => res.json());
+    setData(response); // set the value of the details
+  };
 
   const theValue = (e) => {
     setData({ title: title.value, imdbId: imdbId.value, genre: [genre.value], posterURL: posterURL.value }); // set the values of ...
@@ -55,7 +65,7 @@ const UpdateButton = ({ theTitle }) => {
       return handleClose(); // clsoe the modal
     }
 
-    getUpdate(theData.title); // update
+    getUpdate(data.title); // update
     navigate('/adminHomepage'); // redirect to admin homepage
   };
 
@@ -70,28 +80,28 @@ const UpdateButton = ({ theTitle }) => {
             <label htmlFor="title" className={style.label}>
               Title:
               <br />
-              <input type="text" id="title" name="title" placeholder="Title" onChange={theValue} ref={(e) => (title = e)} />
+              <input type="text" id="title" name="title" placeholder="Title" onChange={theValue} ref={(e) => (title = e)} value={data.title} />
             </label>
             <br />
             <br />
             <label htmlFor="imdbId" className={style.label}>
               Imdb Id:
               <br />
-              <input type="text" id="imdbId" name="imdbId" placeholder="Imdb Id" onChange={theValue} ref={(e) => (imdbId = e)} />
+              <input type="text" id="imdbId" name="imdbId" placeholder="Imdb Id" onChange={theValue} ref={(e) => (imdbId = e)} value={data.imdbId} />
             </label>
             <br />
             <br />
             <label htmlFor="genre" className={style.label}>
               Genre:
               <br />
-              <input type="text" id="genre" name="genre" placeholder="Genre" onChange={theValue} ref={(e) => (genre = e)} />
+              <input type="text" id="genre" name="genre" placeholder="Genre" onChange={theValue} ref={(e) => (genre = e)} value={data.genre} />
             </label>
             <br />
             <br />
             <label htmlFor="posterURL" className={style.label}>
               PosterUrl:
               <br />
-              <input type="text" id="posterURL" name="posterURL" placeholder="PosterURL" onChange={theValue} ref={(e) => (posterURL = e)} />
+              <input type="text" id="posterURL" name="posterURL" placeholder="PosterURL" onChange={theValue} ref={(e) => (posterURL = e)} value={data.posterURL} />
             </label>
             <br />
             <br />

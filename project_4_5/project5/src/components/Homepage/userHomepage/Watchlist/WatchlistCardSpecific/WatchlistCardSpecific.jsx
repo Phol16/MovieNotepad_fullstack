@@ -48,6 +48,9 @@ const WatchlistCardSpecific = () => {
                 <button className={style.button}>Learn More</button>
               </a>
             </div>
+            <br/>
+            <label><h3>Notes</h3></label>
+            <input type="text" />
           </section>
         </div>
       </div>

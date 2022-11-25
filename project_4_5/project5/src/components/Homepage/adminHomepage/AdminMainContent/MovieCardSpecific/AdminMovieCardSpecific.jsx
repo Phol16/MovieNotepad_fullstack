@@ -9,7 +9,8 @@ import style from './style.module.css';
 
 const AdminMovieCardSpecific = () => {
   const [state, setState] = useState([]); //variable for the details
-  const { theCard } = useMovieContext(); //global variable
+  const { theCard, theUserId } = useMovieContext(); //global variable
+  const [display, setDisplay] = useState('none');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,6 +21,12 @@ const AdminMovieCardSpecific = () => {
     const response = await fetch(url).then((res) => res.json());
     setState(response); // set the value of the details
   };
+
+  useEffect(() => {
+    if (state.authorId === theUserId) {
+      setDisplay('flex');
+    }
+  }, [state]);
 
   const back = () => {
     navigate('/adminHomepage'); // redirect to admin homepage
@@ -36,8 +43,8 @@ const AdminMovieCardSpecific = () => {
               <button className={style.button} onClick={back}>
                 Back
               </button>
-              <div className={style.adminButtons}>
-                <UpdateButton theTitle={state.title}/>
+              <div className={style.adminButtons} style={{ display: `${display}` }}>
+                <UpdateButton theTitle={state.title} details={state} />
                 <DeleteButton theTitle={state.title} />
               </div>
             </section>

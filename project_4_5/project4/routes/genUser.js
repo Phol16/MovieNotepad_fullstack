@@ -44,7 +44,7 @@ router.route('/watchlist/:title').delete(watchListValidation, async (request, re
   const { title } = request.params;
   const userId = request.header('x-usersid');
 
-  const theWatchlistId = await watchlist.findOne({ userId, title });
+  const theWatchlistId = await watchlist.findOne({ userId,deletedAt:null, title });
 
   await watchlist.updateOne({ _id: theWatchlistId['_id'] }, { deletedAt: Date.now() });
   return response.status(201).json({ message: `${request.params.title} has been Deleted` });

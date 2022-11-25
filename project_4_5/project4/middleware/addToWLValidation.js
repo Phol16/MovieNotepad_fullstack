@@ -4,7 +4,7 @@ import watchlist from '../models/watchlist.js';
 const addToWLValidation = async (request, response, next) => {
   const userId = request.header('x-usersid')
   const { _id } = await movie.findOne({ title: request.params.title });
-  const theWL = await watchlist.find({userId}).findOne({ title: request.params.title });
+  const theWL = await watchlist.find({userId}).findOne({deletedAt:null, title: request.params.title });
 
   if (!theWL) {
     return next();

@@ -44,9 +44,9 @@ h3 {
 }
 .theButtons {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  width: 85%;
   align-items: center;
-  margin-left: -15px;
 }
 .delete{
   display: flex;
