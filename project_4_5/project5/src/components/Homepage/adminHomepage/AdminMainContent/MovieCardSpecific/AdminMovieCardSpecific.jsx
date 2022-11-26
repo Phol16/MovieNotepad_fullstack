@@ -10,7 +10,7 @@ import style from './style.module.css';
 const AdminMovieCardSpecific = () => {
   const [state, setState] = useState([]); //variable for the details
   const { theCard, theUserId } = useMovieContext(); //global variable
-  const [display, setDisplay] = useState('none');
+  const [display, setDisplay] = useState('none'); // variable for the display style
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const AdminMovieCardSpecific = () => {
 
   useEffect(() => {
     if (state.authorId === theUserId) {
-      setDisplay('flex');
+      setDisplay('flex'); // set value of the display
     }
   }, [state]);
 

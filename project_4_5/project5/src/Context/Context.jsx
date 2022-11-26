@@ -13,12 +13,6 @@ export const MovieProvider = ({ children }) => {
       payload: e,
     });
   };
-  const getSearched = (e) => {
-    dispatch({
-      type: 'GET_SEARCH',
-      payload: e,
-    });
-  };
   const getCard = (e) => {
     dispatch({
       type: 'GET_CARD',
@@ -31,12 +25,6 @@ export const MovieProvider = ({ children }) => {
       payload: e,
     });
   };
-  const getData = (e) => {
-    dispatch({
-      type: 'GET_DATA',
-      payload: e,
-    });
-  };
   const getUpdate = (e) => {
     dispatch({
       type: 'GET_UPDATE',
@@ -46,17 +34,13 @@ export const MovieProvider = ({ children }) => {
 
   const value = {
     theGenre: state.Genre,
-    theSearched: state.Searched,
     theCard: state.Card,
     theUserId: state.UserId,
-    theData: state.Data,
     theUpdate: state.Update,
     getUpdate,
     getCard,
     getGenre,
     getUserId,
-    getSearched,
-    getData,
   };
   return <MovieContext.Provider value={value}>{children}</MovieContext.Provider>;
 };

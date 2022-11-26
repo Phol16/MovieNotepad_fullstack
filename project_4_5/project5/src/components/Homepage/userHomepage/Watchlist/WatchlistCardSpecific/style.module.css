@@ -28,10 +28,10 @@
 .boxDetails {
   display: flex;
   flex-flow: column wrap;
-  background: rgba(26,42,56,0.8);
+  background: rgba(26, 42, 56, 0.8);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(26,42,56,0.4);
+  border: 1px solid rgba(26, 42, 56, 0.4);
   padding: 10px;
   width: 200px;
   border-radius: 10px;
@@ -48,9 +48,8 @@ h3 {
   width: 85%;
   align-items: center;
 }
-.delete{
+.delete {
   display: flex;
   align-items: center;
   padding: 2px 5px;
 }
-

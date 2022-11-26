@@ -9,8 +9,8 @@ import DeleteWL from './Delete/DeleteWL';
 import style from './style.module.css';
 
 const WatchlistCardSpecific = () => {
-  const [state, setState] = useState([]);
-  const { theCard, theUserId } = useMovieContext();
+  const [movieData, setMovieData] = useState([]);
+  const { theCard } = useMovieContext();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,11 +19,11 @@ const WatchlistCardSpecific = () => {
 
   const fetchData = async (url) => {
     const response = await fetch(url).then((res) => res.json());
-    setState(response); // set the value of the details
+    setMovieData(response); // set the value of the movie details
   };
 
   const back = () => {
-    return navigate('/userHomepage/Watchlist'); // redirect to user homepage
+    return navigate('/userHomepage/Watchlist'); // redirect to watchlist
   };
 
   return (
@@ -31,25 +31,27 @@ const WatchlistCardSpecific = () => {
       <NavBar />
       <div className={style.contentContainer}>
         <div className={style.content}>
-          <WatchlistCard details={state} />
+          <WatchlistCard details={movieData} />
           <section className={style.box}>
             <section className={style.theButtons}>
               <button className={style.button} onClick={back}>
                 Back
               </button>
-              <DeleteWL theTitle={state.title}/>
+              <DeleteWL theTitle={movieData.title} />
             </section>
             <div className={style.boxDetails}>
-              <h3>{state.title}</h3>
+              <h3>{movieData.title}</h3>
               <h3>
-                Genre: <br /> {state.genre}
+                Genre: <br /> {movieData.genre}
               </h3>
-              <a target={'_blank'} href={`https://www.imdb.com/title/${state.imdbId}`}>
+              <a target={'_blank'} href={`https://www.imdb.com/title/${movieData.imdbId}`}>
                 <button className={style.button}>Learn More</button>
               </a>
             </div>
-            <br/>
-            <label><h3>Notes</h3></label>
+            <br />
+            <label>
+              <h3>Notes</h3>
+            </label>
             <input type="text" />
           </section>
         </div>

@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { useMovieContext } from '../../../../../../Context/Context';
 import { Delete } from '@mui/icons-material';
-import { Box, Modal, } from '@mui/material';
+import { Box, Modal } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import style from './style.module.css';
 
@@ -46,7 +46,7 @@ const DeleteButton = ({ theTitle }) => {
   return (
     <span>
       <button className={style.theAdminButton} onClick={handleOpen}>
-        <Delete/>
+        <Delete />
       </button>
       <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
         <Box sx={theStyle}>

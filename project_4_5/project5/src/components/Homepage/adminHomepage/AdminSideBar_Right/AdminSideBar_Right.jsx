@@ -1,10 +1,7 @@
 import React from 'react';
-import { useMovieContext } from '../../../../Context/Context';
 import style from './style.module.css';
 
 const AdminSideBar_Right = () => {
-  const { getSearched } = useMovieContext();
-
   const selected = (e) => {};
 
   return (

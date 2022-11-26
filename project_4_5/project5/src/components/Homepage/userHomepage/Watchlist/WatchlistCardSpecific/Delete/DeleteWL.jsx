@@ -1,10 +1,9 @@
+import React, { useState } from 'react';
 import { Delete } from '@mui/icons-material';
-import { Modal } from '@mui/material';
-import { Box } from '@mui/system';
-import React, { useState } from 'react'
+import { Modal, Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useMovieContext } from '../../../../../../Context/Context';
-import style from './style.module.css'
+import style from './style.module.css';
 
 const theStyle = {
   position: 'absolute',
@@ -18,7 +17,7 @@ const theStyle = {
   p: 4,
 };
 
-const DeleteWL = ({theTitle}) => {
+const DeleteWL = ({ theTitle }) => {
   const [open, setOpen] = useState(false); // variables for open/close
   const { theUserId } = useMovieContext(); // global variable
 
@@ -34,13 +33,14 @@ const DeleteWL = ({theTitle}) => {
         'x-usersid': `${theUserId}`,
       },
     });
-     return navigate('/userHomepage/Watchlist')
+
+    return navigate('/userHomepage/Watchlist'); // redirect to watchlist
   };
 
   return (
     <span>
       <button className={style.theAdminButton} onClick={handleOpen}>
-        <Delete/>
+        <Delete />
       </button>
       <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
         <Box sx={theStyle}>
@@ -55,6 +55,6 @@ const DeleteWL = ({theTitle}) => {
       </Modal>
     </span>
   );
-}
+};
 
-export default DeleteWL
+export default DeleteWL;

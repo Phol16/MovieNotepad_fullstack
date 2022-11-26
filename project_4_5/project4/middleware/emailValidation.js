@@ -1,11 +1,11 @@
-import adminUser from '../models/UserModel.js'
+import adminUser from '../models/UserModel.js';
 const emailValidation = async (request, response, next) => {
   const { email } = request.body;
 
   const users = await adminUser.findOne({ email: email });
 
-  if(!email){
-    return response.status(400).json({error:"No email inputted"})
+  if (!email) {
+    return response.status(400).json({ error: 'No email inputted' });
   }
   if (!email.includes('@')) {
     return response.status(422).json({

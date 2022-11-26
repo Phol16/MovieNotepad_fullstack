@@ -1,9 +1,7 @@
 export const InitialValue = {
   Genre: 'all',
-  Searched: [],
   card: '',
   UserId: '',
-  Data: {},
   Update: '',
 };
 
@@ -14,11 +12,6 @@ export const MovieUseReducer = (state, action) => {
         ...state,
         Genre: action.payload,
       };
-    case 'GET_SEARCH':
-      return {
-        ...state,
-        Searched: action.payload,
-      };
     case 'GET_CARD':
       return {
         ...state,
@@ -28,11 +21,6 @@ export const MovieUseReducer = (state, action) => {
       return {
         ...state,
         UserId: action.payload,
-      };
-    case 'GET_DATA':
-      return {
-        ...state,
-        Data: action.payload,
       };
     case 'GET_UPDATE':
       return {

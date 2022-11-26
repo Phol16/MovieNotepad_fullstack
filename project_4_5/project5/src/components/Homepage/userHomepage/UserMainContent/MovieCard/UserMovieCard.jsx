@@ -12,6 +12,7 @@ function UserMovieCard({ details }) {
     getCard(details.title); // set the value of the cardVariable
     navigate('/userHomepage/Movie'); //redirect to each card page
   };
+
   return (
     <Box className={style.container}>
       <button className={style.button} onClick={theMovie}>

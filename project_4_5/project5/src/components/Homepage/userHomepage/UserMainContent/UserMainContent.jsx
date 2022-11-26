@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useMovieContext } from '../../../../Context/Context';
 import MovieCard from './MovieCard/UserMovieCard';
 import style from './style.module.css';

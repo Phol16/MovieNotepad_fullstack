@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useMovieContext } from '../../../../../Context/Context';
 import { Modal } from '@mui/material';
 import { Box } from '@mui/system';
-import style from './style.module.css'
+import style from './style.module.css';
 
 const boxStyle = {
   position: 'absolute',
@@ -20,7 +20,8 @@ const boxStyle = {
 
 const AddMovie = () => {
   const [open, setOpen] = useState(false); // variable for the open/close value
-  const { getData, theData, getUpdate, theUserId } = useMovieContext(); // global variables
+  const [movieData, setMovieData] = useState({}); // variable for movie data
+  const { getUpdate, theUserId } = useMovieContext(); // global variables
 
   const handleOpen = () => setOpen(true); // set the value to true/open
   const handleClose = () => setOpen(false); // set the value to false/close
@@ -32,7 +33,7 @@ const AddMovie = () => {
   let posterURL = '';
 
   const theValue = (e) => {
-    getData({ title: title.value, imdbId: imdbId.value, genre: [genre.value], posterURL: posterURL.value }); //set the value of ...
+    setMovieData({ title: title.value, imdbId: imdbId.value, genre: [genre.value], posterURL: posterURL.value }); //set the value of ...
   };
 
   const theMovie = async (e) => {
@@ -46,16 +47,18 @@ const AddMovie = () => {
         'Content-Type': 'application/json',
         'x-usersid': `${theUserId}`,
       },
-      body: JSON.stringify(theData),
+      body: JSON.stringify(movieData),
     });
 
-    getUpdate(theData.title); // set the value of the update
+    getUpdate(movieData.title); // set the value of the update
     handleClose(); // to close the modal
   };
 
   return (
-    <div >
-      <button onClick={handleOpen} className={style.addMovie}>Add Movie</button>
+    <div>
+      <button onClick={handleOpen} className={style.addMovie}>
+        Add Movie
+      </button>
       <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
         <Box sx={boxStyle}>
           <form onSubmit={theMovie}>

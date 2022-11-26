@@ -19,8 +19,8 @@ function App() {
           <Route path="/adminHomepage/Movie" element={<AdminMovieCardSpecific />} />
           <Route path="/userHomepage" element={<UserHomepage />} />
           <Route path="/userHomepage/Movie" element={<UserMovieCardSpecific />} />
-          <Route path="/userHomepage/Watchlist" element={<Watchlist/>} />
-          <Route path="/userHomepage/Watchlist/Movie" element={<WatchlistCardSpecific/>} />
+          <Route path="/userHomepage/Watchlist" element={<Watchlist />} />
+          <Route path="/userHomepage/Watchlist/Movie" element={<WatchlistCardSpecific />} />
         </Routes>
       </MovieProvider>
     </div>

@@ -1,6 +1,6 @@
+import React from 'react';
 import { Animation, Diversity3, FilterNone, FlutterDash, Mood, TextSnippet, TheaterComedy } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
-import React from 'react';
 import { useMovieContext } from '../../../../Context/Context';
 import style from './style.module.css';
 
@@ -27,9 +27,9 @@ const UserSideBar_Left = () => {
     getGenre('all'); // set the value for genre as all
   };
 
-  const watchlist=()=>{
-    navigate('/userHomepage/Watchlist')
-  }
+  const watchlist = () => {
+    navigate('/userHomepage/Watchlist'); // redirect to watchlist page
+  };
 
   const logout = () => {
     navigate('/'); // redirect back to loginpage
@@ -68,7 +68,9 @@ const UserSideBar_Left = () => {
             </button>
           </div>
           <br />
-          <button onClick={watchlist} className={style.buttonWL}><TextSnippet/> WatchList</button>
+          <button onClick={watchlist} className={style.buttonWL}>
+            <TextSnippet /> WatchList
+          </button>
         </div>
       </div>
     </div>

@@ -21,7 +21,7 @@ const theStyle = {
 
 const UpdateButton = ({ theTitle }) => {
   const [open, setOpen] = useState(false); // variable for open/close
-  const [data, setData] = useState({});
+  const [movieData, setMovieData] = useState({}); // variable
   const { getUpdate, theUserId } = useMovieContext(); // global variable
 
   const navigate = useNavigate();
@@ -40,11 +40,11 @@ const UpdateButton = ({ theTitle }) => {
 
   const fetchData = async (url) => {
     const response = await fetch(url).then((res) => res.json());
-    setData(response); // set the value of the details
+    setMovieData(response); // set the value of the movie details
   };
 
   const theValue = (e) => {
-    setData({ title: title.value, imdbId: imdbId.value, genre: [genre.value], posterURL: posterURL.value }); // set the values of ...
+    setMovieData({ title: title.value, imdbId: imdbId.value, genre: [genre.value], posterURL: posterURL.value }); // set the values of ...
   };
 
   const theMovie = async (e) => {
@@ -57,7 +57,7 @@ const UpdateButton = ({ theTitle }) => {
         'Content-Type': 'application/json',
         'x-usersid': `${theUserId}`,
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(movieData),
     }).then((response) => response.json());
 
     // check if the user is the one who uploaded the movieData
@@ -65,7 +65,7 @@ const UpdateButton = ({ theTitle }) => {
       return handleClose(); // clsoe the modal
     }
 
-    getUpdate(data.title); // update
+    getUpdate(movieData.title); // update
     navigate('/adminHomepage'); // redirect to admin homepage
   };
 
@@ -80,28 +80,28 @@ const UpdateButton = ({ theTitle }) => {
             <label htmlFor="title" className={style.label}>
               Title:
               <br />
-              <input type="text" id="title" name="title" placeholder="Title" onChange={theValue} ref={(e) => (title = e)} value={data.title} />
+              <input type="text" id="title" name="title" placeholder="Title" onChange={theValue} ref={(e) => (title = e)} value={movieData.title} />
             </label>
             <br />
             <br />
             <label htmlFor="imdbId" className={style.label}>
               Imdb Id:
               <br />
-              <input type="text" id="imdbId" name="imdbId" placeholder="Imdb Id" onChange={theValue} ref={(e) => (imdbId = e)} value={data.imdbId} />
+              <input type="text" id="imdbId" name="imdbId" placeholder="Imdb Id" onChange={theValue} ref={(e) => (imdbId = e)} value={movieData.imdbId} />
             </label>
             <br />
             <br />
             <label htmlFor="genre" className={style.label}>
               Genre:
               <br />
-              <input type="text" id="genre" name="genre" placeholder="Genre" onChange={theValue} ref={(e) => (genre = e)} value={data.genre} />
+              <input type="text" id="genre" name="genre" placeholder="Genre" onChange={theValue} ref={(e) => (genre = e)} value={movieData.genre} />
             </label>
             <br />
             <br />
             <label htmlFor="posterURL" className={style.label}>
               PosterUrl:
               <br />
-              <input type="text" id="posterURL" name="posterURL" placeholder="PosterURL" onChange={theValue} ref={(e) => (posterURL = e)} value={data.posterURL} />
+              <input type="text" id="posterURL" name="posterURL" placeholder="PosterURL" onChange={theValue} ref={(e) => (posterURL = e)} value={movieData.posterURL} />
             </label>
             <br />
             <br />

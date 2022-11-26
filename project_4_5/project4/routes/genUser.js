@@ -28,9 +28,9 @@ router.route('/movies/:title').post(movieValidation, addToWLValidation, async (r
   return response.status(200).json({ message: 'added to watchlist' });
 });
 
-router.route('/watchlist').get( userIdValidation,async (request, response) => {
+router.route('/watchlist').get(userIdValidation, async (request, response) => {
   const userId = request.header('x-usersid');
-  return response.status(200).json(await watchlist.find({ deletedAt:null, userId }));
+  return response.status(200).json(await watchlist.find({ deletedAt: null, userId }));
 });
 
 router.route('/watchlist/:title').get(watchListValidation, async (request, response) => {
@@ -44,7 +44,7 @@ router.route('/watchlist/:title').delete(watchListValidation, async (request, re
   const { title } = request.params;
   const userId = request.header('x-usersid');
 
-  const theWatchlistId = await watchlist.findOne({ userId,deletedAt:null, title });
+  const theWatchlistId = await watchlist.findOne({ userId, deletedAt: null, title });
 
   await watchlist.updateOne({ _id: theWatchlistId['_id'] }, { deletedAt: Date.now() });
   return response.status(201).json({ message: `${request.params.title} has been Deleted` });

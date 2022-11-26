@@ -1,4 +1,4 @@
-.container{
+.container {
   background-image: url('../../PageBg/bgseats.jpg');
   background-size: cover;
   background-repeat: no-repeat;
@@ -9,7 +9,7 @@
   width: 100vw;
   height: 100vh;
 }
-.contentContainer{
+.contentContainer {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;

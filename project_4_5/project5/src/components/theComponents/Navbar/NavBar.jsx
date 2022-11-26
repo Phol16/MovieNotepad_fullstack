@@ -5,7 +5,9 @@ import style from './style.module.css';
 const NavBar = () => {
   return (
     <div className={style.logoContainer}>
-      <p className={style.movienotepad}><Movie/> MovieNotepad</p>
+      <p className={style.movienotepad}>
+        <Movie /> MovieNotepad
+      </p>
     </div>
   );
 };

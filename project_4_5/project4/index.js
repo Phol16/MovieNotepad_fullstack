@@ -2,9 +2,9 @@ import express from 'express';
 import process from 'node:process';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
-import adminUser from './routes/adminUser.js'
-import themovies from './routes/movies.js'
-import user from './routes/genUser.js'
+import adminUser from './routes/adminUser.js';
+import themovies from './routes/movies.js';
+import user from './routes/genUser.js';
 import errors from './middleware/errors.js';
 import cors from 'cors';
 
@@ -32,7 +32,6 @@ app.use(errors, (request, response) => {
     error: 'Page Not Found',
   });
 });
-
 
 app.listen(PORT, () => {
   console.log(`App is listening to port: ${PORT}`);
