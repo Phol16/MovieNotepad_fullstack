@@ -30,6 +30,9 @@ const AdminMainContent = () => {
 
   const fetchData = async (url) => {
     const response = await fetch(url).then((res) => res.json());
+    if(response.error === `${theGenre} does not exist`){
+      return
+    }
     setMovieData(response); // set the value for the movieData
   };
 
