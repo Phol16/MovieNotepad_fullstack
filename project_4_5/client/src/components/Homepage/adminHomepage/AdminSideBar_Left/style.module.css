@@ -1,7 +1,8 @@
 .container {
   position: relative;
+  color: white;
   padding-right: 80px;
-  top: 100px;
+  top: 80px;
 }
 .fixedContainer {
   position: fixed;
@@ -23,8 +24,13 @@
 }
 .button {
   background-color: #7e97b4;
+  color: white;
   margin: 2px 0;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  width: 135px;
 }
 .admin {
   background: rgba(26, 42, 56, 0.8);
@@ -33,7 +39,7 @@
   border: 1px solid rgba(26, 42, 56, 0.4);
   padding: 10px;
   border-radius: 5px;
-  margin-top: 50px;
+  margin-top: 5px;
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
@@ -42,6 +48,7 @@
 }
 .logout {
   background-color: #7e97b4;
+  color: white;
   padding: 2px 8px;
   border-radius: 5px;
 }
@@ -50,4 +57,23 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+}
+@media screen and (max-width: 900px) {
+  .container {
+    padding: 0;
+  }
+  .fixedContainer {
+    display: none;
+  }
+  .fixedContainerDrawer {
+    color: white;
+    padding-top: 10px;
+    position: relative;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    top: 100px;
+  }
 }

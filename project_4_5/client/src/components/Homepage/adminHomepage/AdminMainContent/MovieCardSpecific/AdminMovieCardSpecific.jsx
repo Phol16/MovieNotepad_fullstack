@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useMovieContext } from '../../../../../Context/Context';
 import { useNavigate } from 'react-router-dom';
 import AdminMovieCard from '../MovieCard/AdminMovieCard';
-import NavBar from '../../../../theComponents/Navbar/NavBar';
+import NavBar from '../../../../Navbar/NavBar';
 import DeleteButton from './Buttons/DeleteButton';
 import UpdateButton from './Buttons/UpdateButton';
 import style from './style.module.css';
@@ -14,7 +14,7 @@ const AdminMovieCardSpecific = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchData(`http://localhost:8000/movies?search=${theCard}`);
+    fetchData(`https://movienotepad-serverside.onrender.com/movies?search=${theCard}`);
   }, []);
 
   const fetchData = async (url) => {

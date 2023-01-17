@@ -10,9 +10,10 @@ const theStyle = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
   bgcolor: 'white',
+  minWidth: '300px',
   border: '2px solid #000',
+  borderRadius:'5px',
   boxShadow: 24,
   p: 4,
 };
@@ -26,7 +27,7 @@ const DeleteButton = ({ theTitle }) => {
   const handleClose = () => setOpen(false); // set the value to false/close
 
   const deleteIt = async () => {
-    const response = await fetch(`http://localhost:8000/adminUser/movies/${theTitle}`, {
+    const response = await fetch(`https://movienotepad-serverside.onrender.com/adminUser/movies/${theTitle}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

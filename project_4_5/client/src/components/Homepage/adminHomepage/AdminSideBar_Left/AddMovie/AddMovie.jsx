@@ -9,7 +9,6 @@ const boxStyle = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
   bgcolor: 'white',
   color: 'black',
   border: '2px solid #000',
@@ -40,7 +39,7 @@ const AddMovie = () => {
     e.preventDefault(); // to prevent from refreshing the page after submitting
 
     // submitting data to the DB
-    await fetch('http://localhost:8000/adminUser/movies', {
+    await fetch('https://movienotepad-serverside.onrender.com/adminUser/movies', {
       method: 'POST',
       mode: 'cors',
       headers: {

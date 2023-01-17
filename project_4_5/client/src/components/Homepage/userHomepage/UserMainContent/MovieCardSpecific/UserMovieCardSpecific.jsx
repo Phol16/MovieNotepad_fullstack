@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useMovieContext } from '../../../../../Context/Context';
 import { useNavigate } from 'react-router-dom';
 import UserMovieCard from '../MovieCard/UserMovieCard';
-import NavBar from '../../../../theComponents/Navbar/NavBar';
+import NavBar from '../../../../Navbar/NavBar';
 import style from './style.module.css';
 import { Add } from '@mui/icons-material';
 
@@ -13,7 +13,7 @@ const UserMovieCardSpecific = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchData(`http://localhost:8000/movies?search=${theCard}`);
+    fetchData(`https://movienotepad-serverside.onrender.com/movies?search=${theCard}`);
   }, []);
 
   const fetchData = async (url) => {
@@ -22,7 +22,7 @@ const UserMovieCardSpecific = () => {
   };
 
   const addWL = async () => {
-    await fetch(`http://localhost:8000/user/movies/${theCard}`, {
+    await fetch(`https://movienotepad-serverside.onrender.com/user/movies/${theCard}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -11,10 +11,9 @@ const theStyle = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
   bgcolor: 'white',
   border: '2px solid #000',
-  borderRadius: '20px',
+  borderRadius: '5px',
   boxShadow: 24,
   p: 4,
 };
@@ -35,7 +34,7 @@ const UpdateButton = ({ theTitle }) => {
   let posterURL = '';
 
   useEffect(() => {
-    fetchData(`http://localhost:8000/movies?search=${theTitle}`);
+    fetchData(`https://movienotepad-serverside.onrender.com/movies?search=${theTitle}`);
   }, [open]);
 
   const fetchData = async (url) => {
@@ -50,7 +49,7 @@ const UpdateButton = ({ theTitle }) => {
   const theMovie = async (e) => {
     e.preventDefault();
 
-    const response = await fetch(`http://localhost:8000/adminUser/movies/${theTitle}`, {
+    const response = await fetch(`https://movienotepad-serverside.onrender.com/adminUser/movies/${theTitle}`, {
       method: 'PATCH',
       mode: 'cors',
       headers: {

@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMovieContext } from '../../../../../Context/Context';
-import NavBar from '../../../../theComponents/Navbar/NavBar';
+import NavBar from '../../../../Navbar/NavBar';
 import WatchlistCard from '../WatchlistCard/WatchlistCard';
 import DeleteWL from './Delete/DeleteWL';
 import style from './style.module.css';
@@ -14,7 +14,7 @@ const WatchlistCardSpecific = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchData(`http://localhost:8000/movies?search=${theCard}`);
+    fetchData(`https://movienotepad-serverside.onrender.com/movies?search=${theCard}`);
   }, []);
 
   const fetchData = async (url) => {
